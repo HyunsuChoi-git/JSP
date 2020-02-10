@@ -17,45 +17,45 @@ public class TestController extends HttpServlet {
 
 		//1. request 속성 추가
 		
-		request.setAttribute("num", 99);
-		request.setAttribute("id", "java");
+//		request.setAttribute("num", 99);
+//		request.setAttribute("id", "java");
+//		
+//		//2. reqeust null 값 보내기
+//		request.setAttribute("data", null);
+//		
+//		//3. 문자형숫자 보내서 숫자 연산 확인
+//		request.setAttribute("age", "20");
+//		
+//		//4. session 값 보내기
+//		HttpSession session = request.getSession();
+//		session.setAttribute("num", 777);
+//		session.setAttribute("memId", "jsp");
+//		
+//		//5. 배열 보내기
+//		int [] arr = {10,20,30,40,50};
+//		request.setAttribute("arr", arr);
+//			
+//		//6. ArrayList 보내기
+//		ArrayList list = new ArrayList();
+//		list.add("피카츄");
+//		list.add("라이츄");
+//		list.add("파이리");
+//		list.add("꼬북칩");
+//		request.setAttribute("list", list);
+//		
+//		//7. TestVO     //클래스만들어서 클래스 보내보기
+//		TestVO vo = new TestVO();
+//		vo.setId("hera");
+//		vo.setName("헤라");
+//		vo.setAge(30);
+//		request.setAttribute("vo", vo);
+//		
+//		request.getRequestDispatcher("/jsp0207/test.jsp").forward(request, response);
 		
-		//2. reqeust null 값 보내기
-		request.setAttribute("data", null);
 		
-		//3. 문자형숫자 보내서 숫자 연산 확인
-		request.setAttribute("age", "20");
-		
-		//4. session 값 보내기
-		HttpSession session = request.getSession();
-		session.setAttribute("num", 777);
-		session.setAttribute("memId", "jsp");
-		
-		//5. 배열 보내기
-		int [] arr = {10,20,30,40,50};
-		request.setAttribute("arr", arr);
+		request.setAttribute("day", new java.util.Date());
+		request.getRequestDispatcher("/jsp0210/jstl02.jsp").forward(request, response);
 			
-		//6. ArrayList 보내기
-		ArrayList list = new ArrayList();
-		list.add("피카츄");
-		list.add("라이츄");
-		list.add("파이리");
-		list.add("꼬북칩");
-		request.setAttribute("list", list);
-		
-		//7. TestVO     //클래스만들어서 클래스 보내보기
-		TestVO vo = new TestVO();
-		vo.setId("hera");
-		vo.setName("헤라");
-		vo.setAge(30);
-		request.setAttribute("vo", vo);
-		
-		request.getRequestDispatcher("/jsp0207/test.jsp").forward(request, response);
-		
-		
-		
-		
 		
 	}
-	
 }

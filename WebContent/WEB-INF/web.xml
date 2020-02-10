@@ -67,7 +67,7 @@
   
   <!--  0207   :  EL 테스트 -->
   
-	<servlet>
+	<!--<servlet>
         <servlet-name>eltest</servlet-name>
         <servlet-class>web.jsp0207.mvc.TestController</servlet-class>
      </servlet>
@@ -75,10 +75,29 @@
         <servlet-name>eltest</servlet-name>
         <url-pattern>/test.do</url-pattern>
      </servlet-mapping>
+ 	-->
+ 	
+ 	<!-- MVC -->
+<!--  	<servlet>
+ 		<servlet-name>mvc</servlet-name>
+ 		<servlet-class>web.jsp0210.mvc.MemberTestController</servlet-class>
+ 	</servlet>
+ 	<servlet-mapping>
+ 		<servlet-name>mvc</servlet-name>
+ 		<url-pattern>*.love</url-pattern>
+ 	</servlet-mapping> -->
  
- 
- 
- 
-  
+	<servlet>
+		<servlet-name>mvc</servlet-name>
+		<servlet-class>JSP.jsp0210.mvc.MemberTestController</servlet-class>
+		<init-param>
+			<param-name>propertiesTest</param-name>
+			<param-value>D:\hyunsu\Github\JSP\WebContent\WEB-INF\properties\test.properties</param-value>
+		</init-param>
+	</servlet>
+  	<servlet-mapping>
+  		<servlet-name>mvc</servlet-name>
+  		<url-pattern>*.love</url-pattern>
+  	</servlet-mapping>
   
 </web-app>
