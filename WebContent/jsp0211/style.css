@@ -2,9 +2,6 @@ BODY {
 	FONT-SIZE: 9pt; COLOR: #77878F; LINE-HEIGHT: 160%; FONT-FAMILY: 맑은 고딕,verdana,tahoma; 
 	background-color: #E7F0EC;
 }
-H1 {
-	text-align: center;
-}
 TABLE {
 	width: 500; margin: auto; text-align: center; border: 1px solid #77878F; border-collapse: collapse; background-color: #AAB9BD;
 }
@@ -18,7 +15,7 @@ SELECT {
 	FONT-SIZE: 9pt; COLOR: #fff; LINE-HEIGHT: 160%; FONT-FAMILY: 맑은 고딕,verdana,tahoma
 }
 DIV {
-	FONT-SIZE: 9pt; COLOR: #fff; LINE-HEIGHT: 160%; FONT-FAMILY: 맑은 고딕,verdana,tahoma
+	FONT-SIZE: 9pt; COLOR: #77878F; LINE-HEIGHT: 160%; FONT-FAMILY: 맑은 고딕,verdana,tahoma
 }
 FORM {
 	FONT-SIZE: 9pt; COLOR: #fff; LINE-HEIGHT: 160%; FONT-FAMILY: 맑은 고딕,verdana,tahoma
@@ -31,6 +28,9 @@ INPUT {
 }
 BUTTON {
 	BORDER-RIGHT: 1px solid #999999; BORDER-TOP: 1px solid #999999; FONT-SIZE: 9pt; BORDER-LEFT: 1px solid #999999; COLOR: #77878F; BORDER-BOTTOM: 1px solid #999999; FONT-FAMILY: 맑은 고딕,verdana; HEIGHT: 19px; BACKGROUND-COLOR: #E1E8E7;
+}
+P {
+	FONT-SIZE: 9pt; COLOR: #77878F; LINE-HEIGHT: 160%; FONT-FAMILY: 맑은 고딕,verdana,tahoma; 
 }
 
 A:link {text-decoration:none;color:#E1E8E7}

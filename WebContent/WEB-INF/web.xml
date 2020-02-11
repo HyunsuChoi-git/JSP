@@ -89,15 +89,15 @@
  
 	<servlet>
 		<servlet-name>mvc</servlet-name>
-		<servlet-class>JSP.jsp0210.mvc.MemberTestController</servlet-class>
+		<servlet-class>web.jsp0211.controller.MemberController</servlet-class>
 		<init-param>
-			<param-name>propertiesTest</param-name>
-			<param-value>D:\hyunsu\Github\JSP\WebContent\WEB-INF\properties\test.properties</param-value>
+			<param-name>propertiesConfig</param-name>
+			<param-value>D:\hyunsu\Github\JSP\WebContent\WEB-INF\properties\member.properties</param-value>
 		</init-param>
 	</servlet>
   	<servlet-mapping>
   		<servlet-name>mvc</servlet-name>
-  		<url-pattern>*.love</url-pattern>
+  		<url-pattern>*.win</url-pattern>
   	</servlet-mapping>
   
 </web-app>
