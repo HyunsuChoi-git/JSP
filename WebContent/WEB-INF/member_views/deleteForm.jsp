@@ -30,7 +30,6 @@
 		
 		</table>
 	</form>
-
 </body>
 </c:if>
 

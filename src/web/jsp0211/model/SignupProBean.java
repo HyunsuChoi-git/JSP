@@ -2,6 +2,8 @@ package web.jsp0211.model;
 
 import java.io.IOException;
 import java.rmi.ServerException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,6 +42,20 @@ public class SignupProBean implements SuperBean {
 			
 			MemberDAO dao = MemberDAO.getInstance();
 			dao.insertMember(member);
+			
+			
+//			List list = new ArrayList();
+//			list.add(mr.getParameter("id"));
+//			list.add(mr.getParameter("pw"));
+//			list.add(mr.getParameter("name"));
+//			list.add(mr.getParameter("birth"));
+//			list.add(mr.getParameter("email"));
+//			list.add(mr.getFilesystemName("photo"));
+//			
+//			String sql = "insert into imagemember values(?,?,?,?,?,?,sysdate)";
+//			
+//			MemberDAO2 dao2 = MemberDAO2.getInstance();
+//			result = dao2.executeUpdate(sql, list);
 			
 		}	
 		

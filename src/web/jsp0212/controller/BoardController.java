@@ -1,4 +1,4 @@
-package web.jsp0211.controller;
+package web.jsp0212.controller;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -14,19 +14,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import web.jsp0211.model.SuperBean;
+import web.jsp0212.model.SuperBean;
 
-public class MemberController extends HttpServlet {
-	Map beans = new HashMap();
+public class BoardController extends HttpServlet {
+	private Map beanMap = new HashMap();
 	
 	@Override
 	public void init(ServletConfig con) throws ServletException {
-		String path = con.getInitParameter("propertiesConfig");
-		System.out.println(path);
+		String path = (String)con.getInitParameter("propertiesConfig2");
+		
 		Properties p = null;
 		InputStream is = null;
 		try {
-			
 			is = new FileInputStream(path);
 			p = new Properties();
 			p.load(is);
@@ -39,31 +38,30 @@ public class MemberController extends HttpServlet {
 				Class c = Class.forName(value);
 				Object obj = c.newInstance();
 				
-				beans.put(key, obj);
+				beanMap.put(key, obj);
 			}
-			
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-	}
 	
+	}
 	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String uri = req.getRequestURI();
-		Object obj = beans.get(uri);
-		String view = "/WEB-INF/member_views/main.jsp";
-		System.out.println(obj);
+		Object obj = beanMap.get(uri);
+
+		String view = "/WEB-INF/board_views/list.jsp";
 		SuperBean sb = null;
 		if(obj instanceof SuperBean) {
+			
 			sb = (SuperBean)obj;
 			view = sb.actionBean(req, resp);
 		}
-		
 		req.getRequestDispatcher(view).forward(req, resp);
 		
 	}
+
 }

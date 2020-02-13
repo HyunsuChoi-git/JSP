@@ -32,6 +32,7 @@ public class DeleteProBean implements SuperBean {
 				path += ("\\" + photoName);
 				File f = new File(path);
 				f.delete();
+				
 			}
 			result = dao.deleteMember(id, pw);
 			

@@ -86,7 +86,7 @@
  		<servlet-name>mvc</servlet-name>
  		<url-pattern>*.love</url-pattern>
  	</servlet-mapping> -->
- 
+  
 	<servlet>
 		<servlet-name>mvc</servlet-name>
 		<servlet-class>web.jsp0211.controller.MemberController</servlet-class>
@@ -98,6 +98,20 @@
   	<servlet-mapping>
   		<servlet-name>mvc</servlet-name>
   		<url-pattern>*.win</url-pattern>
+  	</servlet-mapping>
+  
+  	
+	<servlet>
+		<servlet-name>mvc2</servlet-name>
+		<servlet-class>web.jsp0212.controller.BoardController</servlet-class>
+		<init-param>
+			<param-name>propertiesConfig2</param-name>
+			<param-value>D:\hyunsu\Github\JSP\WebContent\WEB-INF\properties\board.properties</param-value>
+		</init-param>
+	</servlet>
+  	<servlet-mapping>
+  		<servlet-name>mvc2</servlet-name>
+  		<url-pattern>*.be</url-pattern>
   	</servlet-mapping>
   
 </web-app>

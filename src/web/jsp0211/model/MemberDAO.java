@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -163,6 +165,27 @@ public class MemberDAO {
 		}
 		return x;
 	}
+	// 관리자용 회원 삭제 메소드
+	public int deleteMember(String id) {
+		int x = -1;			// id가 일치 하지 않는 경우 
+		String dbpw = "";
+		try {
+			conn = getConnection();
+
+			String sql = "delete from imagemember where id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			x = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(rs != null) try {rs.close();}catch(SQLException e) {e.printStackTrace();}
+			if(pstmt != null) try {pstmt.close();}catch(SQLException e) {e.printStackTrace();}
+			if(conn != null) try {conn.close();}catch(SQLException e) {e.printStackTrace();}
+		}
+		return x;
+	}
 	
 	// id 존재여부 확인 메서드 (confirmId)
 	public boolean confirmId(String id) {
@@ -210,8 +233,135 @@ public class MemberDAO {
 		return name;
 	}
 	
-	
-	
+	//모든 회원정보 수 리턴
+	public int getAllMemberCount() {
+		int count = 0;
+		
+		try {
+			conn = getConnection();
+			
+			String sql = "select count(*) from imagemember";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) count = rs.getInt(1);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null) try {rs.close();}catch(SQLException e) {e.printStackTrace();}
+			if(pstmt != null) try {pstmt.close();}catch(SQLException e) {e.printStackTrace();}
+			if(conn != null) try {conn.close();}catch(SQLException e) {e.printStackTrace();}
+		}
+		
+		return count;
+	}
+	//검색 회원정보 수 리턴
+	public int getAllMemberCount(String sel, String select) {
+		int count = 0;
+		
+		try {
+			conn = getConnection();
+			
+			String sql = "select count(*) from imagemember where "+sel+" like '%"+select+"%'";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) count = rs.getInt(1);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null) try {rs.close();}catch(SQLException e) {e.printStackTrace();}
+			if(pstmt != null) try {pstmt.close();}catch(SQLException e) {e.printStackTrace();}
+			if(conn != null) try {conn.close();}catch(SQLException e) {e.printStackTrace();}
+		}
+		
+		return count;
+	}
+	//모든 회원정보 리턴
+	public List getAllMember(int startRow, int endRow) {
+		List allMemberList = null;
+		MemberDTO member = null;
+		
+		try {
+			conn = getConnection();
+			String sql = "select id, pw, name, birth, email, img, reg, r "
+					+ "from (select id, pw, name, birth, email, img, reg, rownum r "
+					+ "from (select id, pw, name, birth, email, img, reg "
+					+ "from imagemember order by reg desc) order by reg desc) "
+					+ "where r >= ? and r <= ?";
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rs = pstmt.executeQuery();
+			
+			allMemberList = new ArrayList();
+			while(rs.next()) {
+				member = new MemberDTO();
+				
+				member.setId(rs.getString("id"));
+				member.setPw(rs.getString("pw"));
+				member.setName(rs.getString("name"));
+				member.setBirth(rs.getString("birth"));
+				member.setEmail(rs.getString("email"));
+				member.setPhoto(rs.getString("img"));
+				member.setReg(rs.getTimestamp("reg"));
+				
+				allMemberList.add(member);
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null) try {rs.close();}catch(SQLException e) {e.printStackTrace();}
+			if(pstmt != null) try {pstmt.close();}catch(SQLException e) {e.printStackTrace();}
+			if(conn != null) try {conn.close();}catch(SQLException e) {e.printStackTrace();}
+		}
+		return allMemberList;
+	}	
+		//검색 회원정보 리턴
+		public List getAllMember(String sel, String select, int startRow, int endRow) {
+			List allMemberList = null;
+			MemberDTO member = null;
+			
+			try {
+				conn = getConnection();
+				String sql = "select id, pw, name, birth, email, img, reg, r "
+						+ "from (select id, pw, name, birth, email, img, reg, rownum r "
+						+ "from (select id, pw, name, birth, email, img, reg "
+						+ "from imagemember where "+sel+" like '%"+select+"%' order by reg desc) order by reg desc) "
+						+ "where r >= ? and r <= ?";
+				pstmt= conn.prepareStatement(sql);
+				pstmt.setInt(1, startRow);
+				pstmt.setInt(2, endRow);
+				rs = pstmt.executeQuery();
+				
+				allMemberList = new ArrayList();
+				while(rs.next()) {
+					member = new MemberDTO();
+					
+					member.setId(rs.getString("id"));
+					member.setPw(rs.getString("pw"));
+					member.setName(rs.getString("name"));
+					member.setBirth(rs.getString("birth"));
+					member.setEmail(rs.getString("email"));
+					member.setPhoto(rs.getString("img"));
+					member.setReg(rs.getTimestamp("reg"));
+					
+					allMemberList.add(member);
+					
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if(rs != null) try {rs.close();}catch(SQLException e) {e.printStackTrace();}
+				if(pstmt != null) try {pstmt.close();}catch(SQLException e) {e.printStackTrace();}
+				if(conn != null) try {conn.close();}catch(SQLException e) {e.printStackTrace();}
+			}
+		
+		return allMemberList;
+	}
 	
 	
 	

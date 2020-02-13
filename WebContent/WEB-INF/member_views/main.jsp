@@ -8,7 +8,7 @@
 	<link href="/JSP/jsp0211/style.css" rel="stylesheet" type="text/css">
 </head>
 
-<c:if test="${check == false }">
+<c:if test="${check == -1 }">
 <body>
 	<br />
 	<h1 align="center"> 메인페이지 </h1>
@@ -24,16 +24,18 @@
 			</td>
 		</tr>
 	</table>
-	<br /><br /><br /><br />
+	<br /><br />
+	<h1 align="center"><button onclick="window.location.href='/JSP/board/list.be'" >게시판</button></h1>
+	<br /><br />
 	<div align="center">
 		<img src="/JSP/jsp0211/img/beach.jpg" width="700" />
 	</div>
 </body>
 </c:if>
-	
-
-	
-<c:if test="${check == true }">
+<c:if test="${check == 0 }">
+	<c:redirect url="/member/loginPro.win"/>
+</c:if>	
+<c:if test="${check == 1 }">
 <body>
 	<br />
 	<h1 align="center"> 메인페이지 </h1>
@@ -45,13 +47,18 @@
 			</td>
 		</tr>
 	</table>
-	<br /><br /><br /><br />
+	<br /><br />
+	<div align="center">
+	<c:if test="${admin != null}" >
+		<button onclick="window.location.href='/JSP/member/admin_main.win'" >관리자 페이지</button>
+	</c:if>
+	<button onclick="window.location.href='/JSP/board/list.be'" >게시판</button>
+	</div>
+	<br /><br />
 	<div align="center">
 		<img src="/JSP/jsp0211/img/beach.jpg" width="700" />
 	</div>
 </body>
 </c:if>
-	
-
 
 </html>

@@ -11,7 +11,6 @@ public class ConfirmIdBean implements SuperBean {
 
 	@Override
 	public String actionBean(HttpServletRequest req, HttpServletResponse resp) throws ServerException, IOException {
-		
 
 			// 로그아웃 상태만 접근 가능하게 
 			boolean checkS = false;

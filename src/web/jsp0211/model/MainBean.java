@@ -15,9 +15,14 @@ public class MainBean implements SuperBean {
 			throws ServerException, IOException {
 		
 		// 로그인 상태 확인
-		boolean check = false;
+		int check = -1;
+		String admin = null;
 		
 		HttpSession session = req.getSession();
+		// 세션X, 쿠키X => check = -1
+		// 세션X, 쿠키O => check = 0
+		// 세션O,      => check = 1
+		
 		if(session.getAttribute("memId") == null){  
 			String id = null, pw = null, auto = null;	
 			Cookie[] cs = req.getCookies();		
@@ -29,12 +34,15 @@ public class MainBean implements SuperBean {
 				}
 			}
 			if(auto != null && id != null && pw != null){
-				resp.sendRedirect("loginPro.jsp");
+				check = 0;
 			}
-			
 		
 		}else {
-			check = true;
+			check = 1;
+		}
+		if(session.getAttribute("memId") != null && session.getAttribute("memId").equals("admin")) {
+			admin = "admin";
+			req.setAttribute("admin", admin);
 		}
 		
 		req.setAttribute("check", check);
