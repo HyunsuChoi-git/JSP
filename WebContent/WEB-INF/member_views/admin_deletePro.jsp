@@ -22,6 +22,12 @@
 		</script>
 	</c:if>
 </c:if>
+<c:if test="${admCheck == false}">
+	<script>
+		alert("접근 오류.")
+		window.location.href="/JSP/member/main.win";
+	</script>
+</c:if>
 
 
 </body>
